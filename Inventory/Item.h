@@ -20,7 +20,7 @@ namespace ge
 struct ItemState
 {
     ge::eItemId Id = ge::eItemId::eEmpty;
-    ge::eItemType Type = ge::eItemType::eEtc;
+    ge::eItemType Key = ge::eItemType::eEtc;
 
     int Str = 0;
     int Dex = 0;
@@ -34,11 +34,11 @@ struct ItemState
     int Mp = 0;
 
     ItemState() {};
-    ItemState(ge::eItemId itemId, ge::eItemType type,
+    ItemState(ge::eItemId itemId, ge::eItemType Key,
               int str, int dex, int con, int _int, int wis, int cha, int atk, int def, int hp, int mp)
     {
         Id = itemId;
-        Type = type;
+        Key = Key;
         Str = str;
         Dex = dex;
         Con = con;
