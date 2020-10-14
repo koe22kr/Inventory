@@ -20,7 +20,7 @@ namespace ge
 struct ItemState
 {
     ge::eItemId Id = ge::eItemId::eEmpty;
-    ge::eItemType Key = ge::eItemType::eEtc;
+    ge::eItemType Type = ge::eItemType::eEtc;
 
     int Str = 0;
     int Dex = 0;
@@ -34,11 +34,11 @@ struct ItemState
     int Mp = 0;
 
     ItemState() {};
-    ItemState(ge::eItemId itemId, ge::eItemType Key,
+    ItemState(ge::eItemId itemId, ge::eItemType key,
               int str, int dex, int con, int _int, int wis, int cha, int atk, int def, int hp, int mp)
     {
         Id = itemId;
-        Key = Key;
+        Type = key;
         Str = str;
         Dex = dex;
         Con = con;
@@ -51,11 +51,19 @@ struct ItemState
         Mp = mp;
         
     }
+    bool isEmpty()
+    {
+        if (Id== ge::eItemId::eEmpty)
+        {
+            return true;
+        }
+        return false;
+    }
 };
 
 
 
-class ItemHelper//스크립트로 빼서 사용할 부분 하드코딩 클래스.
+class ItemHelper//스크립트로 빼서 사용할 부분, 하드코딩 클래스.
 {
 public:
   static ItemState getState(ge::eItemId itemId)
@@ -90,25 +98,25 @@ private:
 public:
     ge::eItemId     getID()                 { return State.Id; };
     void            setID(ge::eItemId id)   { State.Id = id; };
-   
-    virtual bool process();
-    virtual BaseItem&& Create();
+    ItemState getState() { return State; };
+    virtual bool process() { return false; };
+    //virtual BaseItem&& Create() {};
 };
 
 class EquipItem :public BaseItem
 {
     bool process();
-    BaseItem&&  Create() override;
+    //BaseItem&&  Create() override;
 };
 
 class UseItem :public BaseItem
 {
     bool process();
-    BaseItem&&  Create() override;
+    //BaseItem&&  Create() override;
 };
 
 class EtcItem :public BaseItem
 {
     bool process();
-    BaseItem&&  Create() override;
+    //BaseItem&&  Create() override;
 };

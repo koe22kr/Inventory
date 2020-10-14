@@ -4,27 +4,26 @@
 
 #include <string>
 
-namespace ge
+namespace gn
 {
-	enum eInventory
-	{
-		InventoryMaxSize = 40,
-	};
+	static size_t InventoryMaxSize = 40;
 }
 
 class Inventory
 {
+	
 	std::vector<BaseItem> ItemVec;
+	bool swapItem(int base, int target);
+	bool pushItem(BaseItem& item);
+	bool removeItem(int idx);
+	bool useItem(int idx);
+	bool indexIsValid(int idx);
+	
+	
+	
 	Inventory()
 	{
-		ItemVec.resize(ge::InventoryMaxSize);
+		ItemVec.resize(gn::InventoryMaxSize);
 	}
-
 };
 
-
-template<class _type>
-_type Create(std::string _typename)
-{
-	_typename.c_str();
-}
